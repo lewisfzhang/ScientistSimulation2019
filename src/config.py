@@ -1,6 +1,15 @@
 class Config:
     def __init__(self):
-        return
+        self.seed = 123
+        self.time_periods = 20
+        self.ideas_per_time = 10
+        self.sci_rate = 10
+        self.tp_alive = 8
 
-    def step(self):
-        return
+        self.idea_mean = 300
+        self.idea_max = 100
+        self.start_effort_mean = 150
+        self.k_mean = 37
+
+        self.equal_returns = True
+        self.opt_num = 1
