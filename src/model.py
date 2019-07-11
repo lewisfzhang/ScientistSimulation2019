@@ -1,3 +1,7 @@
+import idea
+from numpy.random import poisson
+
+
 class Model:
     def __init__(self, config):
         self.num_sci = config.sci_rate
@@ -20,3 +24,6 @@ class Model:
             sci.age = sci.age+1
 
     def birth_new_scientists(self):
+        for i in range(self.ideas_per_time):
+            new_idea = idea.Idea()
+            idea.idea_mean = poisson(lam=self.idea_mean)
