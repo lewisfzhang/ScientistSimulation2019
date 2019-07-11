@@ -10,6 +10,7 @@ class Scientist:
         self.start_effort = None
         self.available_effort = None
         self.perceived_rewards = pd.DataFrame(columns=['Idea Mean', 'Idea Max', 'Idea K'])
+        self.ideas_invested_in = []
         self.idea_effort_tp = []
         self.idea_eff_tot = []
         return
