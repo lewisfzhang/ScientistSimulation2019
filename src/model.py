@@ -1,4 +1,5 @@
 import idea
+import scientist
 from numpy.random import poisson
 
 
@@ -21,9 +22,16 @@ class Model:
 
     def age_scientists(self):
         for sci in self.scientist_list:
-            sci.age = sci.age+1
+            sci.age = sci.age + 1
 
     def birth_new_scientists(self):
-        for i in range(self.ideas_per_time):
+        for i in range(self.num_sci):
+            new_scientist = scientist.Scientist()
+            new_scientist.age = 0
+            new_scientist.learning_speed = poisson(lam=self.learning_rate_mean)
+            new_scientist.idea_max_var = poisson(lam=self.perceived_max_var)
+            new_scientist.idea_mean_var = poisson(lam=self.perceived_mean_var)
+            new_scientist.start_effort = poisson(lam=self.start_effort_mean)
+            
             new_idea = idea.Idea()
-            idea.idea_mean = poisson(lam=self.idea_mean)
+            new_idea.idea_mean = poisson(lam=self.idea_mean)
