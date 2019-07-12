@@ -12,6 +12,7 @@ class Model:
         self.ideas_per_time = config.ideas_per_time
         self.tp_alive = config.tp_alive
         self.idea_mean = config.idea_mean
+        self.idea_sds = config.idea_sds
         self.idea_max = config.idea_max
         self.start_effort_mean = config.start_effort_mean
         self.k_mean = config.k_mean
@@ -56,11 +57,14 @@ class Model:
                 # defining variables
                 sci_mult_max = None  # random number from ND
                 sci_mult_mean = None  # random number from ND
+                sci_mult_sds = None # random number from ND
                 idea_mean = sci_mult_mean * i.idea_mean
+                idea_sds = sci_mult_sds * i.idea_sds
                 idea_max = sci_mult_max * i.idea_max
                 idea_k = sci.learning_speed * i.idea_k
                 # adding to current df
                 new_data = {'Idea Mean': idea_mean,
+                            'Idea SDS': idea_sds,
                             'Idea Max': idea_max,
                             'Idea K': idea_k}
                 sci.perceived_rewards = sci.perceived_rewards.append(new_data, ignore_index=True)

@@ -16,11 +16,12 @@ class Scientist:
 
         # some scientists will be more optimistic than others
         self.idea_max_mult = f.get_random_number(0.5, 1.5)  # SCALAR: multiplier determining max perceived returns
+        self.idea_sds_mult = f.get_random_numbber(0.5, 1.5) # SCALAR: multiplier determining sds of perceived returns
         self.idea_mean_mult = f.get_random_number(0.5, 1.5)  # SCALAR: multiplier determining perceived lambda
 
         self.start_effort = poisson(lam=self.model.start_effort_mean)  # SCALAR: determines starting effort for a scientist in all periods
         self.avail_effort = self.start_effort  # SCALAR: counter that determines how much effort a scientist has left to allocate within TP
-        self.perceived_rewards = pd.DataFrame(columns=['Idea Mean', 'Idea Max', 'Idea K'])  # tracks perceived rewards
+        self.perceived_rewards = pd.DataFrame(columns=['Idea Mean', 'Idea SDS', 'Idea Max', 'Idea K'])  # tracks perceived rewards
 
         # data collection: creates lists to track investment within and across time periods
         self.idea_eff_tp = []  # tracks the effort to be invested across different ideas within time period
