@@ -25,6 +25,8 @@ class Model:
         self.birth_new_scientists()
         self.birth_new_ideas()
         self.set_perceived_rewards()
+        # optimize choice
+        self.update_objects
 
     # adds one year to the age of every scientist that already exists within the model
     def age_scientists(self):
@@ -49,7 +51,7 @@ class Model:
             new_idea.num_k = 0
             self.idea_list.append(new_idea)
 
-    # loop through every idea
+    # loop through every scientist, appending their perceived rewards dataframe with new ideas
     def set_perceived_rewards(self):
         for i in self.scientist_list:
             scientist = self.scientist_list[i]
@@ -57,12 +59,12 @@ class Model:
             for j in self.idea_list:
                 idea = self.idea_list[j]
                 if j not in df.index:
-                    asd
+                    sci_mult_max = None # random number from ND
+                    sci_mult_mean = None # random number from ND
+                    idea_mean = sci_mult_mean * idea.idea_mean
+                    idea_max = sci_mult_max * idea.idea_max
+                    idea_k = scientist.learning_speed * idea.idea_k
+                    df.append(j, idea_mean, idea_max, idea_k)
 
-
-
-
-
-
-
-
+    # loop through each idea object, updating the effort that was invested in this time period
+    def update_objects(self):
