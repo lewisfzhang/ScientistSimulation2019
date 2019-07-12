@@ -28,6 +28,9 @@ class Scientist:
         self.ideas_k_paid_tp = []  # records which ideas the scientist paid investment cost for this period
         self.idea_eff_tot = []  # tracks the total effort invested in each idea by the scientist
         self.ideas_k_paid_tot = []  # records which ideas the scientist has paid the investment cost for overall
+        self.returns_tp = []  # tracks the returns by idea within time period for the scientist
+        self.returns_tot = []  # records the sum of returns the scientist has accrued for each idea
+        self.overall_returns = 0
 
     def step(self):
         # reset time period trackers to all zeros

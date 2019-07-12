@@ -21,7 +21,7 @@ class Idea:
 def get_returns(self, means, sds, max, start_idx, end_idx):
     start = max * logistic_cdf(start_idx, loc=means, scale=sds)
     end = max * logistic_cdf(end_idx, loc=means, scale=sds)
-    return end-start
+    return end - start
 
 
 def old_logistic_cdf(x, loc, scale):

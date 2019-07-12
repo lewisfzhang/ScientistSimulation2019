@@ -1,5 +1,6 @@
 import idea
 import scientist
+import config
 import pandas as pd
 
 
@@ -28,6 +29,7 @@ class Model:
         for s in self.scientist_list:
             s.step()
         self.update_objects()
+        self.pay_out_returns()
 
     # adds one year to the age of every scientist that already exists within the model
     def age_scientists(self):
@@ -89,3 +91,36 @@ class Model:
         sci.ideas_k_paid_tp.append(0)
         sci.ideas_eff_tot.append(0)
         sci.ideas_k_paid_tot.append(0)
+        sci.returns_tp.append(0)
+        sci.returns_tot.append(0)
+
+    # determine who gets paid out based on the amount of effort input
+    def pay_out_returns(self):
+        for idx in self.idea_list:
+            i = self.idea_list[idx]
+            last_index = len(i.effort_by_tp) - 1
+            start_effort = i.total_effort - i.effort_by_tp[last_index]
+            idea_return = i.get_returns(self, i.idea_mean, i.idea_sds, i.idea_max, start_effort, i.total_effort)
+            self.process_winners(idx, idea_return)
+
+
+    def process_winners(self, iidx, returns):
+        list_of_investors = []
+        for sidx, sci in enumerate(self.scientist_list):
+            if sci.idea_eff_tp[iidx] != 0:
+                list_of_investors.append(sidx)
+        if config.equal_returns = True:
+            num_investors = len(list_of_investors)
+            scientist_returns = returns / num_investors
+            for invidx in list_of_investors:
+                scientist_id = list_of_investors[invidx]
+                scientist = self.scientist_list[scientist_id]
+                scientist.returns_tp[iidx] += scientist_returns
+                scientist.returns_tot[iidx] += scientist_returns
+                scientist.overall_returns += scientist_returns
+        else:
+            oldest_scientist_id = list_of_investors[len(list_of_investors) - 1]
+            scientist = self.scientist_list[oldest_scientist_id]
+            scientist.returns_tp[iidx] += returns
+            scientist.returns_tot[iidx] += returns
+            scientist.overall_returns += returns
