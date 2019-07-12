@@ -1,5 +1,6 @@
 import idea
 import scientist
+import pandas as pd
 from numpy.random import poisson
 
 
@@ -52,9 +53,20 @@ class Model:
             new_idea.num_k = 0
             self.idea_list.append(new_idea)
 
+    # loop through every idea
     def set_perceived_rewards(self):
-        for i in range(self.scientist_list):
+        for i in self.scientist_list:
             scientist = self.scientist_list[i]
-            for j in range(self.idea_list):
-                idea = self.idea_list[i]
+            df = scientist.perceived_rewards
+            for j in self.idea_list:
+                idea = self.idea_list[j]
+                if idea in df.index:
+                    adsf
+
+
+
+
+
+
+
 
