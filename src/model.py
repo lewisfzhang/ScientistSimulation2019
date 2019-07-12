@@ -1,6 +1,15 @@
-import idea
-import scientist
+import idea.py
+import scientist.py
 import pandas as pd
+
+
+def append_scientist_list(s):
+    scientist = s.Scientist
+    scientist.idea_eff_tp.append(0)
+    scientist.ideas_k_paid_tp.append(0)
+    scientist.idea_eff_tot.append(0)
+    scientist.idea_k_paid_tot(0)
+    pass
 
 
 class Model:
@@ -48,16 +57,17 @@ class Model:
     # loop through every scientist, appending their perceived rewards dataframe with new ideas
     def set_perceived_rewards(self):
         for s in self.scientist_list:
-            scientist = self.scientist_list[s]
+            scientist.Scientist = self.scientist_list[s]
             df = scientist.perceived_rewards
-                for idx, idea in enumerate(self.idea_list):
-                    if idx not in df.index:
-                        sci_mult_max = None  # random number from ND
-                        sci_mult_mean = None  # random number from ND
-                        idea_mean = sci_mult_mean * idea.idea_mean
-                        idea_max = sci_mult_max * idea.idea_max
-                        idea_k = scientist.learning_speed * idea.idea_k
-                        df.append(idx, idea_mean, idea_max, idea_k)
+            for idx, i in enumerate(self.idea_list):
+                if idx not in df.index:
+                    sci_mult_max = None  # random number from ND
+                    sci_mult_mean = None  # random number from ND
+                    idea_mean = sci_mult_mean * i.idea_mean
+                    idea_max = sci_mult_max * i.idea_max
+                    idea_k = scientist.learning_speed * i.idea_k
+                    df.append(idx, idea_mean, idea_max, idea_k)
+                    append_scientist_list(scientist)
 
     # data collection: loop through each idea object, updating the effort that was invested in this time period
     def update_objects(self):
@@ -73,3 +83,12 @@ class Model:
             idea.effort_by_tp.append(effort_invested_tp)
             idea.num_k += k_paid_tp
             idea.num_k_by_tp.append(k_paid_tp)
+
+    # data collection: ensures that each scientist object has lists corresponding to the total number of ideas
+    def append_scientist_lists(self, scientist):
+        scientist.idea_eff_tp.append(0)
+        scientist.ideas_k_paid_tp.append(0)
+        scientist.ideas_eff_tot.append(0)
+        scientist.ideas_k_paid_tot.append(0)
+        return
+

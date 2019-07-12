@@ -22,10 +22,8 @@ class Scientist:
         self.avail_effort = self.start_effort  # SCALAR: counter that determines how much effort a scientist has left to allocate within TP
         self.perceived_rewards = pd.DataFrame(columns=['Index', 'Idea Mean', 'Idea Max', 'Idea K'])  # tracks perceived rewards
 
-        self.create_scientist_collectors()
-
-    def create_scientist_collectors(self):
-        self.idea_effort_tp = []  # tracks the effort to be invested across different ideas within time period
+        # data collection: creates lists to track investment within and across time periods
+        self.idea_eff_tp = []  # tracks the effort to be invested across different ideas within time period
         self.ideas_k_paid_tp = []  # records which ideas the scientist paid investment cost for this period
         self.idea_eff_tot = []  # tracks the total effort invested in each idea by the scientist
         self.ideas_k_paid_tot = []  # records which ideas the scientist has paid the investment cost for overall
@@ -35,3 +33,5 @@ class Scientist:
         if self.age < self.model.tp_alive:
             self.avail_effort = self.start_effort
             optimize.investing_helper(self, self.model)
+
+

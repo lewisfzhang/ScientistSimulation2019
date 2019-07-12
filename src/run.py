@@ -7,4 +7,4 @@ class Run:
         c = config.Config()
         m = model.Model(c)
         for i in range(c.time_periods):
-            m.step()
+            m.step(self, c)
