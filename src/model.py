@@ -24,7 +24,8 @@ class Model:
         self.birth_new_scientists()
         self.birth_new_ideas()
         self.set_perceived_rewards()
-        # optimize choice
+        for s in self.scientist_list:
+            s.step()
         self.update_objects()
 
     # adds one year to the age of every scientist that already exists within the model
@@ -35,7 +36,7 @@ class Model:
     # creates new scientists, birthed at age 0, and sets their random constants (variances, learning speed, and effort
     def birth_new_scientists(self):
         for i in range(self.num_sci):
-            new_scientist = scientist.Scientist()
+            new_scientist = scientist.Scientist(self)
             self.scientist_list.append(new_scientist)
 
     # creates new ideas and sets their random constants (true mean, true max, investment cost)
@@ -49,19 +50,16 @@ class Model:
         for s in self.scientist_list:
             scientist = self.scientist_list[s]
             df = scientist.perceived_rewards
-            for i in self.idea_list:
-                idea = self.idea_list[i]
-                if i not in df.index:
-                    sci_mult_max = None  # random number from ND
-                    sci_mult_mean = None  # random number from ND
-                    idea_mean = sci_mult_mean * idea.idea_mean
-                    idea_max = sci_mult_max * idea.idea_max
-                    idea_k = scientist.learning_speed * idea.idea_k
-                    df.append(i, idea_mean, idea_max, idea_k)
+                for idx, idea in enumerate(self.idea_list):
+                    if idx not in df.index:
+                        sci_mult_max = None  # random number from ND
+                        sci_mult_mean = None  # random number from ND
+                        idea_mean = sci_mult_mean * idea.idea_mean
+                        idea_max = sci_mult_max * idea.idea_max
+                        idea_k = scientist.learning_speed * idea.idea_k
+                        df.append(idx, idea_mean, idea_max, idea_k)
 
-        # optimization call will go here
-
-    # loop through each idea object, updating the effort that was invested in this time period
+    # data collection: loop through each idea object, updating the effort that was invested in this time period
     def update_objects(self):
         for i in self.idea_list:
             effort_invested_tp = 0
