@@ -56,8 +56,8 @@ class Model:
             df = scientist.perceived_rewards
             for j in self.idea_list:
                 idea = self.idea_list[j]
-                if idea in df.index:
-                    adsf
+                if j not in df.index:
+                    asd
 
 
 
