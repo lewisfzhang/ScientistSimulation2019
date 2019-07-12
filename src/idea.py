@@ -1,4 +1,5 @@
 from numpy.random import poisson
+import numpy as np
 
 
 class Idea:
@@ -15,5 +16,19 @@ class Idea:
         self.total_effort = 0  # total effort invested in idea to date
         self.num_k = 0  # number of researchers who have invested learning cost in idea
 
-    def get_perceived_returns(self, mean, max, start_idx, end_idx):
-        return max * 1#something
+
+# helper functions for calculating idea curve
+def get_returns(self, means, sds, max, start_idx, end_idx):
+    start = max * logistic_cdf(start_idx, loc=means, scale=sds)
+    end = max * logistic_cdf(end_idx, loc=means, scale=sds)
+    return end-start
+
+
+def old_logistic_cdf(x, loc, scale):
+    return 1 / (1 + np.exp((loc - x) / scale))
+
+
+# normalizing so that all idea curves start at (0,0)
+def logistic_cdf(x, loc, scale):
+    return (old_logistic_cdf(x, loc, scale) - old_logistic_cdf(0, loc, scale)) / (
+                1 - old_logistic_cdf(0, loc, scale))
