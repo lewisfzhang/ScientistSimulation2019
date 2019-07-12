@@ -42,13 +42,7 @@ class Model:
     # creates new ideas and sets their random constants (true mean, true max, investment cost)
     def birth_new_ideas(self):
         for i in range(self.ideas_per_time):
-            new_idea = idea.Idea()
-            # put this in the constructor
-            new_idea.idea_mean = poisson(lam=self.idea_mean)
-            new_idea.idea_max = poisson(lam=self.idea_max)
-            new_idea.idea_k = poisson(lam=self.k_mean)
-            new_idea.total_effort = 0
-            new_idea.num_k = 0
+            new_idea = idea.Idea(self)
             self.idea_list.append(new_idea)
 
     # loop through every scientist, appending their perceived rewards dataframe with new ideas

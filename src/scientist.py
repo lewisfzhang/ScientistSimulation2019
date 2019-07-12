@@ -29,4 +29,7 @@ class Scientist:
         self.ideas_k_paid_tot = []  # records which ideas the scientist has paid the investment cost for overall
 
     def step(self):
-        return
+        # scientist is still active
+        if self.age < self.model.tp_alive:
+            self.avail_effort = self.start_effort
+            optimize.investing_helper(self, self.model)

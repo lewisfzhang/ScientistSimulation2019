@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 
-def investing_helper(sci):  # sci = scientist object
+def investing_helper(sci, mod):  # sci = scientist object
 
     while sci.avail_effort > 0:
         sci.k = sci.learning_speed * np.asarray([i.idea_k for i in sci.idea_list])
@@ -15,9 +15,9 @@ def investing_helper(sci):  # sci = scientist object
 
         sci.marg_eff = sci.increment - sci.curr_k
 
-        if sci.model.config.switch == 0:
+        if mod.config.switch == 0:
             idea_idx = greedy_returns(sci)
-        elif sci.model.config.switch == 1:
+        elif mod.config.switch == 1:
             idea_idx = prob_returns(sci)
         else:
             idea_idx = smart_returns(sci)
