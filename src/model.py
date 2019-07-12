@@ -2,16 +2,6 @@ import idea.py
 import scientist.py
 import pandas as pd
 
-
-def append_scientist_list(s):
-    scientist = s.Scientist
-    scientist.idea_eff_tp.append(0)
-    scientist.ideas_k_paid_tp.append(0)
-    scientist.idea_eff_tot.append(0)
-    scientist.idea_k_paid_tot(0)
-    pass
-
-
 class Model:
     # initiates the key parameters within the model, as set in config
     # creates empty lists to track scientists and ideas; index indicates age
@@ -72,23 +62,22 @@ class Model:
     # data collection: loop through each idea object, updating the effort that was invested in this time period
     def update_objects(self):
         for i in self.idea_list:
+            idea = self.idea_list[i]
             effort_invested_tp = 0
             k_paid_tp = 0
-            idea = self.idea_list[i]
             for s in self.scientist_list:
                 scientist = self.scientist_list[s]
-                effort_invested_tp += scientist.idea_effort_tp[i]
+                effort_invested_tp += scientist.idea_eff_tp[i]
                 k_paid_tp += scientist.k_paid_tp[i]
             idea.total_effort += effort_invested_tp
             idea.effort_by_tp.append(effort_invested_tp)
             idea.num_k += k_paid_tp
             idea.num_k_by_tp.append(k_paid_tp)
 
-    # data collection: ensures that each scientist object has lists corresponding to the total number of ideas
-    def append_scientist_lists(self, scientist):
+    # updates the lists within each scientist object to reflect the correct number of available ideas
+    def append_scientist_list(s):
+        scientist = s.Scientist
         scientist.idea_eff_tp.append(0)
         scientist.ideas_k_paid_tp.append(0)
-        scientist.ideas_eff_tot.append(0)
-        scientist.ideas_k_paid_tot.append(0)
-        return
-
+        scientist.idea_eff_tot.append(0)
+        scientist.idea_k_paid_tot(0)
