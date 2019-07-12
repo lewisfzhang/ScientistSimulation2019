@@ -5,6 +5,7 @@ class Idea:
     def __init__(self, model):
         self.idea_mean = poisson(lam=model.idea_mean)  # idea specific inflection point
         self.idea_max = poisson(lam=model.idea_max)  # idea specific maximum impact
+        self.idea_sds = poisson(lame=model.idea_sds) # idea specific SDS
         self.idea_k = poisson(lam=model.k_mean)  # idea specific learning cost
         self.create_idea_collectors()
 
