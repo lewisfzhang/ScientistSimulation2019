@@ -7,6 +7,7 @@ class Config:
         self.tp_alive = 8
 
         self.idea_mean = 300
+        self.idea_sds = 75
         self.idea_max = 100
         self.start_effort_mean = 150
         self.k_mean = 37

@@ -4,6 +4,7 @@ from numpy.random import poisson
 class Idea:
     def __init__(self, model):
         self.idea_mean = poisson(lam=model.idea_mean)  # idea specific inflection point
+        self.idea_sds = poisson(lam=model.idea_sds)
         self.idea_max = poisson(lam=model.idea_max)  # idea specific maximum impact
         self.idea_k = poisson(lam=model.k_mean)  # idea specific learning cost
         self.create_idea_collectors()
