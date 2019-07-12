@@ -24,7 +24,7 @@ class Model:
         self.age_scientists()
         self.birth_new_scientists()
         self.birth_new_ideas()
-        self.set_perceived_rewards
+        self.set_perceived_rewards()
 
     # adds one year to the age of every scientist that already exists within the model
     def age_scientists(self):
@@ -35,17 +35,13 @@ class Model:
     def birth_new_scientists(self):
         for i in range(self.num_sci):
             new_scientist = scientist.Scientist()
-            new_scientist.age = 0
-            new_scientist.learning_speed = poisson(lam=self.learning_rate_mean)
-            new_scientist.idea_max_var = poisson(lam=self.perceived_max_var)
-            new_scientist.idea_mean_var = poisson(lam=self.perceived_mean_var)
-            new_scientist.start_effort = poisson(lam=self.start_effort_mean)
             self.scientist_list.append(new_scientist)
 
     # creates new ideas and sets their random constants (true mean, true max, investment cost)
     def birth_new_ideas(self):
         for i in range(self.ideas_per_time):
             new_idea = idea.Idea()
+            # put this in the constructor
             new_idea.idea_mean = poisson(lam=self.idea_mean)
             new_idea.idea_max = poisson(lam=self.idea_max)
             new_idea.idea_k = poisson(lam=self.k_mean)

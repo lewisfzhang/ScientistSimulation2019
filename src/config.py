@@ -11,7 +11,7 @@ class Config:
         self.start_effort_mean = 150
         self.k_mean = 37
 
-        self.learning_rate_mean = 1
+        # self.learning_rate_mean = 1
         self.perceived_max_var = None
         self.perceived_mean_var = None
 
