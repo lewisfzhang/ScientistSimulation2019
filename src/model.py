@@ -1,6 +1,7 @@
-import idea.py
-import scientist.py
+import idea
+import scientist
 import pandas as pd
+
 
 class Model:
     # initiates the key parameters within the model, as set in config
@@ -21,8 +22,8 @@ class Model:
     def step(self):
         self.age_scientists()
         self.birth_new_scientists()
-        self.birth_new_ideas()
-        self.set_perceived_rewards()
+        ideas_last_tp = self.birth_new_ideas()
+        self.set_perceived_rewards(ideas_last_tp)
         for s in self.scientist_list:
             s.step()
         self.update_objects()
@@ -39,45 +40,49 @@ class Model:
             self.scientist_list.append(new_scientist)
 
     # creates new ideas and sets their random constants (true mean, true max, investment cost)
+    # returns the number of ideas from last tp
     def birth_new_ideas(self):
         for i in range(self.ideas_per_time):
             new_idea = idea.Idea(self)
             self.idea_list.append(new_idea)
+        return len(self.idea_list) - self.ideas_per_time
 
     # loop through every scientist, appending their perceived rewards dataframe with new ideas
-    def set_perceived_rewards(self):
-        for s in self.scientist_list:
-            scientist.Scientist = self.scientist_list[s]
-            df = scientist.perceived_rewards
-            for idx, i in enumerate(self.idea_list):
-                if idx not in df.index:
-                    sci_mult_max = None  # random number from ND
-                    sci_mult_mean = None  # random number from ND
-                    idea_mean = sci_mult_mean * i.idea_mean
-                    idea_max = sci_mult_max * i.idea_max
-                    idea_k = scientist.learning_speed * i.idea_k
-                    df.append(idx, idea_mean, idea_max, idea_k)
-                    append_scientist_list(scientist)
+    # also updates related list with extra spots for new ideas --> append_scientist_lists
+    def set_perceived_rewards(self, ideas_last_tp):
+        for sci in self.scientist_list:
+            # slice to iterate only through new ideas
+            for i in self.idea_list[ideas_last_tp:]:
+                # defining variables
+                sci_mult_max = None  # random number from ND
+                sci_mult_mean = None  # random number from ND
+                idea_mean = sci_mult_mean * i.idea_mean
+                idea_max = sci_mult_max * i.idea_max
+                idea_k = sci.learning_speed * i.idea_k
+
+                # adding to current df
+                new_data = {'Idea Mean': idea_mean,
+                            'Idea Max': idea_max,
+                            'Idea K': idea_k}
+                sci.perceived_rewards = sci.perceived_rewards.append(new_data, ignore_index=True)
+            self.append_scientist_lists(sci)
 
     # data collection: loop through each idea object, updating the effort that was invested in this time period
     def update_objects(self):
-        for i in self.idea_list:
-            idea = self.idea_list[i]
+        for idx, i in enumerate(self.idea_list):
             effort_invested_tp = 0
             k_paid_tp = 0
-            for s in self.scientist_list:
-                scientist = self.scientist_list[s]
-                effort_invested_tp += scientist.idea_eff_tp[i]
-                k_paid_tp += scientist.k_paid_tp[i]
-            idea.total_effort += effort_invested_tp
-            idea.effort_by_tp.append(effort_invested_tp)
-            idea.num_k += k_paid_tp
-            idea.num_k_by_tp.append(k_paid_tp)
+            for sci in self.scientist_list:
+                effort_invested_tp += sci.idea_effort_tp[idx]
+                k_paid_tp += sci.k_paid_tp[idx]
+            i.total_effort += effort_invested_tp
+            i.effort_by_tp.append(effort_invested_tp)
+            i.num_k += k_paid_tp
+            i.num_k_by_tp.append(k_paid_tp)
 
     # updates the lists within each scientist object to reflect the correct number of available ideas
-    def append_scientist_list(s):
-        scientist = s.Scientist
-        scientist.idea_eff_tp.append(0)
-        scientist.ideas_k_paid_tp.append(0)
-        scientist.idea_eff_tot.append(0)
-        scientist.idea_k_paid_tot(0)
+    def append_scientist_lists(self, sci):
+        sci.idea_eff_tp.append(0)
+        sci.ideas_k_paid_tp.append(0)
+        sci.ideas_eff_tot.append(0)
+        sci.ideas_k_paid_tot.append(0)

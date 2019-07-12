@@ -26,6 +26,7 @@
                     <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
                     <folding>
                       <element signature="e#0#19#0" expanded="true" />
+                      <element signature="e#2076#2162#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -80,12 +81,13 @@
           <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/model.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
-                  <caret line="86" column="44" lean-forward="true" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
+                <state relative-caret-position="401">
+                  <caret line="67" column="44" selection-end-line="88" />
                   <folding>
-                    <element signature="e#0#14#0" expanded="true" />
-                    <element signature="e#289#354#0" expanded="true" />
-                    <element signature="e#1466#1556#0" expanded="true" />
+                    <element signature="e#0#11#0" expanded="true" />
+                    <element signature="e#68#133#0" expanded="true" />
+                    <element signature="e#1495#1585#0" expanded="true" />
+                    <element signature="e#1854#1944#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -98,8 +100,8 @@
           <file leaf-file-name="optimize.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/optimize.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="461">
-                  <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+                <state relative-caret-position="311">
+                  <caret line="39" column="37" lean-forward="true" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
                   <folding>
                     <element signature="e#14#32#0" expanded="true" />
                     <element signature="e#118#188#0" expanded="true" />
@@ -193,7 +195,6 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/model.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/run.py</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/scientist.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -202,7 +203,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/test_model.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -354,15 +354,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-303" y="-1177" width="1920" height="1177" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49907407" weight="0.24960506" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49907407" visible="true" weight="0.24960506" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5002633" side_tool="true" weight="0.32962963" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962963" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" sideWeight="0.4997367" weight="0.32962963" />
-      <window_info active="true" anchor="bottom" id="Python Console" visible="true" weight="0.32962963" />
+      <window_info anchor="bottom" id="Python Console" visible="true" weight="0.32962963" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" weight="0.32962963" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -408,6 +407,7 @@
           <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#2076#2162#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -454,18 +454,20 @@
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#2076#2162#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="86" column="44" lean-forward="true" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
+        <state relative-caret-position="401">
+          <caret line="67" column="44" selection-end-line="88" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#289#354#0" expanded="true" />
-            <element signature="e#1466#1556#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#68#133#0" expanded="true" />
+            <element signature="e#1495#1585#0" expanded="true" />
+            <element signature="e#1854#1944#0" expanded="true" />
           </folding>
         </state>
       </provider>
