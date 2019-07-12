@@ -37,13 +37,12 @@ class Scientist:
         # scientist is still active
         if self.age < self.model.tp_alive:
             self.avail_effort = self.start_effort
-            optimize.investing_helper(self, self.model)
-        # optimize should return all the ideas invested in by the scientist in the time period
-        # return: index, cumulative effort invested in time period (minus K cost), if K was paid this period (0/1)
-
+            df = optimize.investing_helper(self, self.model)
         # loop through all investments made within time period
-            # self.idea_eff_tp[index] += effort
-            # self.ideas_k_paid_tp[index] += 1
+        for idx in df.index:
+            idea_index = df.iloc[idx, 'idea_idx']
+            self.idea_eff_tp[idea_index] += df.iloc[idx, 'marg_eff']  # update this period marginal effort per idea
+            self.idea_k_paid_tp[idea_index] += df.iloc[idx, 'k_paid']  # update which ideas had investment costs paid
         for i in self.ideas_eff_total:
             self.idea_eff_tot[i] += self.idea_eff_tp[i]
         for j in self.ideas_k_pad_tot:
