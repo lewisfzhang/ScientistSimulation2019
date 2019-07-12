@@ -13,3 +13,6 @@ class Idea:
         self.num_k_by_tp = []  # number people who paid investment cost by period
         self.total_effort = 0  # total effort invested in idea to date
         self.num_k = 0  # number of researchers who have invested learning cost in idea
+
+    def get_perceived_returns(self, mean, max, start_idx, end_idx):
+        return max * 1#something

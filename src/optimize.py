@@ -34,7 +34,7 @@ def investing_helper(sci, mod):
         # checks if idea_idx is already in the df
         if idea_idx in df['idea_idx'].values:
             row_data = df.loc[df['idea_idx' == idea_idx]]
-            transaction_df = df.drop(df.index[df['idea_idx'] == idea_idx][0])
+            df = df.drop(df.index[df['idea_idx'] == idea_idx][0])
             # 0 because adding to current row, idea_idx should stay the same
             # for k_paid, same logic as sci.curr_k calculation
             add_row = {'idea_idx': 0,
