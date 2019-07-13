@@ -1,4 +1,5 @@
 import numpy as np
+import timeit
 
 class Config:
     def __init__(self):
@@ -10,12 +11,13 @@ class Config:
         self.sci_rate = 10
         self.tp_alive = 8
 
-        # maybe make some of these proportions relative to the mean?
+        # maybe make some of these proportions relative to the idea mean?
         self.idea_mean = 300
         self.idea_sds = 75
         self.idea_max = 100
         self.start_effort_mean = 150
         self.k_mean = 37
+        self.learning_rate_mean = 1
 
         # self.learning_rate_mean = 1
         self.perceived_max_var = None
@@ -24,11 +26,29 @@ class Config:
         self.equal_returns = True
         self.opt_num = 0
 
+        self.set_time()  # for time keeping purposes
+
     def set_seed(self):
         np.random.seed(self.seed)
-        self.seed_array = np.random.randint(100000, 999999, 10000)  # initialize 10000 random seeds
+        self.seed_array = np.random.randint(100000, 999999, 10000000)  # initialize 10000000 random seeds
         self.next_seed_idx = 0  # keeps track of the last seed that was used
 
     def get_next_seed(self):
         self.next_seed_idx += 1
+        if self.next_seed_idx == len(self.seed_array):
+            self.next_seed_idx = 0  # loop back in the seed array
         return self.seed_array[self.next_seed_idx]
+
+    def set_time(self):
+        self.runtime = timeit.default_timer()
+
+    def stop_time(self):
+        stop = timeit.default_timer()
+        print('Elapsed runtime: {} seconds'.format(round(stop - self.runtime, 2)))
+        self.runtime = stop
+
+    def pause_time(self):
+        return
+
+    def resume_time(self):
+        return

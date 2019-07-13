@@ -4,9 +4,9 @@ import pandas as pd
 import random
 
 
-def get_random_number(min, max, configg):  # configg is the config object, used to get random seed value
+def get_random_float(min, max, configg):  # configg is the config object, used to get random seed value
     np.random.seed(configg.get_next_seed())
-    return random.randrange(min, max)
+    return random.uniform(min, max)
 
 
 def get_normal_number(mean, sds, configg):  # configg is the config object, used to get random seed value

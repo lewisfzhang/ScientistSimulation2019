@@ -11,13 +11,13 @@ class Scientist:
         self.age = 0  # SCALAR: age of the given scientists, initiated at 0 years when entered into model
 
         # SCALAR: multiplier determining scientist specific K (idea K * learning speed = specific k)
-        # learning speed is CONSTANT for all ideas for a scientist
-        self.learning_speed = poisson(lam=self.model.learning_rate_mean)
+        # learning speed is CONSTANT for all ideas for a scientist --> 'lam' centered around 1
+        self.learning_speed = poisson(lam=10*self.model.learning_rate_mean)/10
 
         # some scientists will be more optimistic than others
-        self.idea_max_mult = f.get_random_number(0.5, 1.5, self.model.config)  # SCALAR: multiplier determining max perceived returns
-        self.idea_sds_mult = f.get_random_number(0.5, 1.5, self.model.config) # SCALAR: multiplier determining sds of perceived returns
-        self.idea_mean_mult = f.get_random_number(0.5, 1.5, self.model.config)  # SCALAR: multiplier determining perceived lambda
+        self.idea_max_mult = f.get_random_float(0.5, 1.5, self.model.config)  # SCALAR: multiplier determining max perceived returns
+        self.idea_sds_mult = f.get_random_float(0.5, 1.5, self.model.config) # SCALAR: multiplier determining sds of perceived returns
+        self.idea_mean_mult = f.get_random_float(0.5, 1.5, self.model.config)  # SCALAR: multiplier determining perceived lambda
 
         self.start_effort = poisson(lam=self.model.start_effort_mean)  # SCALAR: determines starting effort for a scientist in all periods
         self.avail_effort = self.start_effort  # SCALAR: counter that determines how much effort a scientist has left to allocate within TP
@@ -46,13 +46,13 @@ class Scientist:
 
     def reset_trackers(self):
         # reset time period trackers to all zeros
-        self.idea_eff_tp.clear()
-        self.ideas_k_paid_tp.clear()
+        self.idea_eff_tp = [0] * len(self.idea_eff_tp)
+        self.ideas_k_paid_tp = [0] * len(self.ideas_k_paid_tp)
 
     def update_trackers(self, df):
         # loop through all investments made within time period
         for idx, row in df.iterrows():  # iterates through rows of df
-            idea_index = row['idea_idx']
+            idea_index = int(row['idea_idx'])
             self.idea_eff_tp[idea_index] += row['marg_eff']  # update this period marginal effort per idea
             self.ideas_k_paid_tp[idea_index] += row['k_paid']  # update which ideas had investment costs paid
 

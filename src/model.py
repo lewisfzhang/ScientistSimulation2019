@@ -2,12 +2,14 @@ import idea
 import scientist
 import pandas as pd
 import functions as f
+import config as c
 
 
 class Model:
     # initiates the key parameters within the model, as set in config
     # creates empty lists to track scientists and ideas; index indicates age
     def __init__(self, config):
+        # SCALARS
         self.config = config
         self.num_sci = config.sci_rate
         self.time_periods = config.time_periods
@@ -18,19 +20,29 @@ class Model:
         self.idea_max = config.idea_max
         self.start_effort_mean = config.start_effort_mean
         self.k_mean = config.k_mean
+        self.learning_rate_mean = config.learning_rate_mean
+        self.tp = 0  # first tp
+
+        # ARRAYS
         self.scientist_list = []
         self.idea_list = []
 
     #  defines the process for one time period within the model
     def step(self):
+        c1 = c.Config()
         self.age_scientists()
         self.birth_new_scientists()
+
         ideas_last_tp = self.birth_new_ideas()  # keep track of how many old ideas so we only have to update new ideas
         self.set_perceived_rewards(ideas_last_tp)
+
         for s in self.scientist_list:
             s.step()
+
         self.update_objects()
         self.pay_out_returns()
+
+        self.tp += 1
 
     # adds one year to the age of every scientist that already exists within the model
     def age_scientists(self):
@@ -49,14 +61,25 @@ class Model:
         for i in range(self.ideas_per_time):
             new_idea = idea.Idea(self)
             self.idea_list.append(new_idea)
-        return len(self.idea_list) - self.ideas_per_time
+
+        if self.tp == 0:
+            idx = 0  # index should be 0 because there are no previous ideas before tp = 0 (see set_perceived_rewards)
+        else:
+            idx = len(self.idea_list) - self.ideas_per_time
+        return idx
 
     # loop through every scientist, appending their perceived rewards dataframe with new ideas
     # also updates related list with extra spots for new ideas --> append_scientist_lists
     def set_perceived_rewards(self, ideas_last_tp):
         for sci in self.scientist_list:
+            # determining how many loops we need to run (for performance efficiency)
+            if sci.age == 0:  # just born scientists need to update for all ideas
+                new_idea_list = self.idea_list
+            else:  # older scientists only need to update for new ideas
+                new_idea_list = self.idea_list[ideas_last_tp:]
+
             # slice to iterate only through new ideas, setting up attributes and scientist perception
-            for i in self.idea_list[ideas_last_tp:]:
+            for i in new_idea_list:
                 self.append_scientist_lists(sci)  # add element to signal new idea for data collector variables
 
                 # keeping all normal distributions for sci_mult to 0.3 range --> *** 0.1 sds ***
@@ -68,7 +91,7 @@ class Model:
                 idea_mean = sci_mult_mean * i.idea_mean
                 idea_sds = sci_mult_sds * i.idea_sds
                 idea_max = sci_mult_max * i.idea_max
-                idea_k = sci.learning_speed * i.idea_k
+                idea_k = int(sci.learning_speed * i.idea_k)  # k must be integer!
 
                 # adding to current df
                 new_data = {'Idea Mean': idea_mean,
@@ -82,8 +105,8 @@ class Model:
     # keep it in model since it is called by the model step function --> set_perceived_rewards()
     def append_scientist_lists(self, sci):
         sci.idea_eff_tp.append(0)
+        sci.idea_eff_tot.append(0)
         sci.ideas_k_paid_tp.append(0)
-        sci.ideas_eff_tot.append(0)
         sci.ideas_k_paid_tot.append(0)
         sci.returns_tp.append(0)
         sci.returns_tot.append(0)
@@ -104,10 +127,11 @@ class Model:
     # determine who gets paid out based on the amount of effort input
     def pay_out_returns(self):
         for idx, i in enumerate(self.idea_list):
-            last_index = len(i.effort_by_tp) - 1  # to get total effort since last tp
-            start_effort = i.total_effort - sum(i.effort_by_tp[0:last_index])  # sum all effort before this tp
-            idea_return = idea.get_returns(i.idea_mean, i.idea_sds, i.idea_max, start_effort, i.total_effort)
-            self.process_winners(idx, idea_return)  # process the winner for each idea, one per loop
+            if i.effort_by_tp[self.tp] != 0:  # only ideas that were invested matter? check!
+                last_index = len(i.effort_by_tp) - 1  # to get total effort since last tp
+                start_effort = i.total_effort - sum(i.effort_by_tp[0:last_index])  # sum all effort before this tp
+                idea_return = idea.get_returns(i.idea_mean, i.idea_sds, i.idea_max, start_effort, start_effort+i.total_effort)
+                self.process_winners(idx, idea_return)  # process the winner for each idea, one per loop
 
     # processes winners for idea with index iidx
     def process_winners(self, iidx, returns):
@@ -115,6 +139,7 @@ class Model:
         for sidx, sci in enumerate(self.scientist_list):
             if sci.idea_eff_tp[iidx] != 0:
                 list_of_investors.append(sidx)
+
         if self.config.equal_returns:  # each scientist receives same number of returns?? CHECK ON THIS!!! --> should be proportional to effort?
             num_investors = len(list_of_investors)
             scientist_returns = returns / num_investors  # FLOAT / int => FLOAT

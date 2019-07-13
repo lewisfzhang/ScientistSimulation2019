@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3034b74-de77-4974-821f-a4161ee58a3d" name="Default Changelist" comment="idea curve">
+    <list default="true" id="c3034b74-de77-4974-821f-a4161ee58a3d" name="Default Changelist" comment="big push">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions.py" afterDir="false" />
@@ -10,6 +10,10 @@
       <change beforePath="$PROJECT_DIR$/src/optimize.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/optimize.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scientist.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scientist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/easy_install" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/easy_install" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/easy_install-3.6" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/easy_install-3.6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/easy-install.pth" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/easy-install.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/setuptools-28.8.0-py3.6.egg" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,24 +28,25 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="scientist.py" pinned="false" current-in-tab="true">
+            <file leaf-file-name="scientist.py" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/scientist.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="195">
-                    <caret line="14" column="59" lean-forward="true" selection-start-line="14" selection-end-line="15" />
+                  <state relative-caret-position="720">
+                    <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
                     <folding>
                       <element signature="e#0#19#0" expanded="true" />
-                      <element signature="e#3122#3201#0" expanded="true" />
+                      <element signature="e#302#394#0" expanded="true" />
+                      <element signature="e#3158#3237#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="idea.py" pinned="false" current-in-tab="false">
+            <file leaf-file-name="idea.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/idea.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="345">
-                    <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+                  <state relative-caret-position="240">
+                    <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
                     <folding>
                       <element signature="e#0#32#0" expanded="true" />
                     </folding>
@@ -64,8 +69,8 @@
           <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/run.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+                <state relative-caret-position="150">
+                  <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -73,11 +78,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/config.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+                <state relative-caret-position="522">
+                  <caret line="54" selection-start-line="54" selection-end-line="54" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -85,31 +93,31 @@
           <file leaf-file-name="optimize.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/optimize.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="81" selection-start-line="15" selection-start-column="81" selection-end-line="15" selection-end-column="81" />
+                <state relative-caret-position="870">
+                  <caret line="58" selection-start-line="58" selection-end-line="58" />
                   <folding>
                     <element signature="e#14#32#0" expanded="true" />
                     <element signature="e#92#168#0" expanded="true" />
-                    <element signature="e#442#494#0" expanded="true" />
-                    <element signature="e#645#710#0" expanded="true" />
+                    <element signature="e#688#740#0" expanded="true" />
+                    <element signature="e#885#950#0" expanded="true" />
                     <element signature="e#2566#2620#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/model.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="332">
-                  <caret line="122" column="7" lean-forward="true" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="7" />
+                <state relative-caret-position="155">
+                  <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                     <element signature="e#82#147#0" expanded="true" />
                     <element signature="e#1580#1670#0" expanded="true" />
                     <element signature="e#1939#2029#0" expanded="true" />
                     <element signature="e#2492#2572#0" expanded="true" />
-                    <element signature="e#3654#3751#0" expanded="true" />
+                    <element signature="e#4311#4408#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -122,13 +130,13 @@
           <file leaf-file-name="optimize.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/optimize.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1395">
-                  <caret line="93" selection-start-line="93" selection-end-line="93" />
+                <state relative-caret-position="709">
+                  <caret line="58" selection-start-line="58" selection-end-line="58" />
                   <folding>
                     <element signature="e#14#32#0" expanded="true" />
                     <element signature="e#118#188#0" expanded="true" />
-                    <element signature="e#442#494#0" expanded="true" />
-                    <element signature="e#645#710#0" expanded="true" />
+                    <element signature="e#688#740#0" expanded="true" />
+                    <element signature="e#885#950#0" expanded="true" />
                     <element signature="e#2566#2620#0" expanded="true" />
                   </folding>
                 </state>
@@ -138,12 +146,12 @@
           <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/model.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1665">
-                  <caret line="114" column="35" lean-forward="true" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
+                <state relative-caret-position="327">
+                  <caret line="144" selection-start-line="144" selection-end-line="144" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                     <element signature="e#2492#2572#0" expanded="true" />
-                    <element signature="e#3654#3751#0" expanded="true" />
+                    <element signature="e#3978#4075#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -153,7 +161,7 @@
             <entry file="file://$PROJECT_DIR$/src/functions.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="270">
-                  <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+                  <caret line="18" selection-start-line="18" selection-end-line="18" />
                   <folding>
                     <element signature="e#15#33#0" expanded="true" />
                   </folding>
@@ -176,10 +184,16 @@
     <findStrings>
       <find>idea</find>
       <find>sci.model</find>
-      <find>mod</find>
       <find>idx</find>
       <find>append</find>
       <find>ideas_k_paid_tp</find>
+      <find>increment</find>
+      <find>marg_eff</find>
+      <find>idea_list</find>
+      <find>print</find>
+      <find>idea_eff_tp</find>
+      <find>effort_by_tp</find>
+      <find>mod</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -189,13 +203,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/scientist.java.py" />
-        <option value="$PROJECT_DIR$/src/optimize.py" />
-        <option value="$PROJECT_DIR$/src/config.py" />
         <option value="$PROJECT_DIR$/src/functions.py" />
         <option value="$PROJECT_DIR$/src/scientist.py" />
+        <option value="$PROJECT_DIR$/src/optimize.py" />
         <option value="$PROJECT_DIR$/src/idea.py" />
-        <option value="$PROJECT_DIR$/src/model.py" />
         <option value="$PROJECT_DIR$/src/run.py" />
+        <option value="$PROJECT_DIR$/src/model.py" />
+        <option value="$PROJECT_DIR$/src/config.py" />
       </list>
     </option>
   </component>
@@ -450,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562967567875</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="big push">
+      <created>1562983993100</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1562983993100</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -464,34 +485,33 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49907407" weight="0.24960506" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32916668" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.5002633" side_tool="true" weight="0.32962963" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32916668" />
-      <window_info anchor="bottom" id="Version Control" sideWeight="0.4997367" weight="0.32962963" />
-      <window_info anchor="bottom" id="Python Console" weight="0.37083334" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49907407" visible="true" weight="0.24960506" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.32916668" />
+      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5002633" side_tool="true" weight="0.32962963" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32916668" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32916668" />
+      <window_info anchor="bottom" id="Version Control" order="1" sideWeight="0.4997367" weight="0.32962963" />
+      <window_info anchor="bottom" id="Python Console" order="2" weight="0.37083334" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32916668" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.32916668" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
       <window_info id="Favorites" sideWeight="0.5009259" side_tool="true" weight="0.24960506" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24945612" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" visible="true" weight="0.32885906" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="TODO" order="13" />
+      <window_info anchor="bottom" id="Run" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="17" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="16" side_tool="true" visible="true" weight="0.32885906" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="15" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
@@ -500,7 +520,8 @@
     <MESSAGE value="update model.py" />
     <MESSAGE value="refresh" />
     <MESSAGE value="idea curve" />
-    <option name="LAST_COMMIT_MESSAGE" value="idea curve" />
+    <MESSAGE value="big push" />
+    <option name="LAST_COMMIT_MESSAGE" value="big push" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/run.py">
@@ -519,85 +540,97 @@
           <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3122#3201#0" expanded="true" />
+            <element signature="e#302#394#0" expanded="true" />
+            <element signature="e#3158#3237#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scientist.java.py" />
-    <entry file="file://$PROJECT_DIR$/src/optimize.py">
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/random.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="81" selection-start-line="15" selection-start-column="81" selection-end-line="15" selection-end-column="81" />
-          <folding>
-            <element signature="e#14#32#0" expanded="true" />
-            <element signature="e#92#168#0" expanded="true" />
-            <element signature="e#442#494#0" expanded="true" />
-            <element signature="e#645#710#0" expanded="true" />
-            <element signature="e#2566#2620#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="206">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#15#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/scientist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#302#394#0" expanded="true" />
+            <element signature="e#3158#3237#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/idea.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        <state relative-caret-position="240">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model.py">
+    <entry file="file://$PROJECT_DIR$/src/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="122" column="7" lean-forward="true" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="7" />
+        <state relative-caret-position="522">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#82#147#0" expanded="true" />
-            <element signature="e#1580#1670#0" expanded="true" />
-            <element signature="e#1939#2029#0" expanded="true" />
-            <element signature="e#2492#2572#0" expanded="true" />
-            <element signature="e#3654#3751#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="150">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.py">
+    <entry file="file://$PROJECT_DIR$/src/optimize.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+        <state relative-caret-position="870">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#14#32#0" expanded="true" />
+            <element signature="e#92#168#0" expanded="true" />
+            <element signature="e#688#740#0" expanded="true" />
+            <element signature="e#885#950#0" expanded="true" />
+            <element signature="e#2566#2620#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scientist.py">
+    <entry file="file://$PROJECT_DIR$/src/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="59" lean-forward="true" selection-start-line="14" selection-end-line="15" />
+        <state relative-caret-position="155">
+          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3122#3201#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#82#147#0" expanded="true" />
+            <element signature="e#1580#1670#0" expanded="true" />
+            <element signature="e#1939#2029#0" expanded="true" />
+            <element signature="e#2492#2572#0" expanded="true" />
+            <element signature="e#4311#4408#0" expanded="true" />
           </folding>
         </state>
       </provider>
