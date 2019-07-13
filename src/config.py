@@ -1,11 +1,16 @@
+import numpy as np
+
 class Config:
     def __init__(self):
         self.seed = 123
+        self.set_seed()
+
         self.time_periods = 20
         self.ideas_per_time = 10
         self.sci_rate = 10
         self.tp_alive = 8
 
+        # maybe make some of these proportions relative to the mean?
         self.idea_mean = 300
         self.idea_sds = 75
         self.idea_max = 100
@@ -17,4 +22,13 @@ class Config:
         self.perceived_mean_var = None
 
         self.equal_returns = True
-        self.opt_num = 1
+        self.opt_num = 0
+
+    def set_seed(self):
+        np.random.seed(self.seed)
+        self.seed_array = np.random.randint(100000, 999999, 10000)  # initialize 10000 random seeds
+        self.next_seed_idx = 0  # keeps track of the last seed that was used
+
+    def get_next_seed(self):
+        self.next_seed_idx += 1
+        return self.seed_array[self.next_seed_idx]

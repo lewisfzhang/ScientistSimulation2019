@@ -11,17 +11,17 @@ class Idea:
         self.create_idea_collectors()
 
     def create_idea_collectors(self):
+        self.total_effort = 0  # total effort invested in idea to date, also accessed by optimization algorithms
         self.effort_by_tp = []  # total effort invested in idea by period
-        self.num_k_by_tp = []  # number people who paid investment cost by period
-        self.total_effort = 0  # total effort invested in idea to date
         self.num_k = 0  # number of researchers who have invested learning cost in idea
+        self.num_k_by_tp = []  # number people who paid investment cost by period
 
 
 # helper functions for calculating idea curve
-def get_returns(self, means, sds, max, start_idx, end_idx):
-    start = max * logistic_cdf(start_idx, loc=means, scale=sds)
-    end = max * logistic_cdf(end_idx, loc=means, scale=sds)
-    return end - start
+def get_returns(means, sds, maxx, start_idx, end_idx):
+    start = maxx * logistic_cdf(start_idx, loc=means, scale=sds)
+    end = maxx * logistic_cdf(end_idx, loc=means, scale=sds)
+    return end-start  # returns type FLOAT
 
 
 def old_logistic_cdf(x, loc, scale):

@@ -1,13 +1,14 @@
 import idea
 import scientist
-import config
 import pandas as pd
+import functions as f
 
 
 class Model:
     # initiates the key parameters within the model, as set in config
     # creates empty lists to track scientists and ideas; index indicates age
     def __init__(self, config):
+        self.config = config
         self.num_sci = config.sci_rate
         self.time_periods = config.time_periods
         self.ideas_per_time = config.ideas_per_time
@@ -24,7 +25,7 @@ class Model:
     def step(self):
         self.age_scientists()
         self.birth_new_scientists()
-        ideas_last_tp = self.birth_new_ideas()
+        ideas_last_tp = self.birth_new_ideas()  # keep track of how many old ideas so we only have to update new ideas
         self.set_perceived_rewards(ideas_last_tp)
         for s in self.scientist_list:
             s.step()
@@ -54,38 +55,31 @@ class Model:
     # also updates related list with extra spots for new ideas --> append_scientist_lists
     def set_perceived_rewards(self, ideas_last_tp):
         for sci in self.scientist_list:
-            # slice to iterate only through new ideas
+            # slice to iterate only through new ideas, setting up attributes and scientist perception
             for i in self.idea_list[ideas_last_tp:]:
-                # defining variables
-                sci_mult_max = None  # random number from ND
-                sci_mult_mean = None  # random number from ND
-                sci_mult_sds = None # random number from ND
+                self.append_scientist_lists(sci)  # add element to signal new idea for data collector variables
+
+                # keeping all normal distributions for sci_mult to 0.3 range --> *** 0.1 sds ***
+                # idea is that sci.idea_mult ranges from 0.5-1.5, so the worst case we get low end of 0.2
+                sci_mult_max = f.get_normal_number(sci.idea_max_mult, 0.1, self.config)
+                sci_mult_mean = f.get_normal_number(sci.idea_sds_mult, 0.1, self.config)
+                sci_mult_sds = f.get_normal_number(sci.idea_mean_mult, 0.1, self.config)
+
                 idea_mean = sci_mult_mean * i.idea_mean
                 idea_sds = sci_mult_sds * i.idea_sds
                 idea_max = sci_mult_max * i.idea_max
                 idea_k = sci.learning_speed * i.idea_k
+
                 # adding to current df
                 new_data = {'Idea Mean': idea_mean,
                             'Idea SDS': idea_sds,
                             'Idea Max': idea_max,
                             'Idea K': idea_k}
                 sci.perceived_rewards = sci.perceived_rewards.append(new_data, ignore_index=True)
-            self.append_scientist_lists(sci)
-
-    # data collection: loop through each idea object, updating the effort that was invested in this time period
-    def update_objects(self):
-        for idx, i in enumerate(self.idea_list):
-            effort_invested_tp = 0
-            k_paid_tp = 0
-            for sci in self.scientist_list:
-                effort_invested_tp += sci.idea_effort_tp[idx]
-                k_paid_tp += sci.k_paid_tp[idx]
-            i.total_effort += effort_invested_tp
-            i.effort_by_tp.append(effort_invested_tp)
-            i.num_k += k_paid_tp
-            i.num_k_by_tp.append(k_paid_tp)
 
     # updates the lists within each scientist object to reflect the correct number of available ideas
+    # ignore static warning, only because we aren't using self keyword
+    # keep it in model since it is called by the model step function --> set_perceived_rewards()
     def append_scientist_lists(self, sci):
         sci.idea_eff_tp.append(0)
         sci.ideas_k_paid_tp.append(0)
@@ -94,33 +88,44 @@ class Model:
         sci.returns_tp.append(0)
         sci.returns_tot.append(0)
 
+    # data collection: loop through each idea object, updating the effort that was invested in this time period
+    def update_objects(self):
+        for idx, i in enumerate(self.idea_list):
+            effort_invested_tp = 0
+            k_paid_tp = 0
+            for sci in self.scientist_list:
+                effort_invested_tp += sci.idea_eff_tp[idx]
+                k_paid_tp += sci.ideas_k_paid_tp[idx]
+            i.total_effort += effort_invested_tp
+            i.effort_by_tp.append(effort_invested_tp)
+            i.num_k += k_paid_tp
+            i.num_k_by_tp.append(k_paid_tp)
+
     # determine who gets paid out based on the amount of effort input
     def pay_out_returns(self):
-        for idx in self.idea_list:
-            i = self.idea_list[idx]
-            last_index = len(i.effort_by_tp) - 1
-            start_effort = i.total_effort - i.effort_by_tp[last_index]
-            idea_return = i.get_returns(self, i.idea_mean, i.idea_sds, i.idea_max, start_effort, i.total_effort)
-            self.process_winners(idx, idea_return)
+        for idx, i in enumerate(self.idea_list):
+            last_index = len(i.effort_by_tp) - 1  # to get total effort since last tp
+            start_effort = i.total_effort - sum(i.effort_by_tp[0:last_index])  # sum all effort before this tp
+            idea_return = idea.get_returns(i.idea_mean, i.idea_sds, i.idea_max, start_effort, i.total_effort)
+            self.process_winners(idx, idea_return)  # process the winner for each idea, one per loop
 
-
+    # processes winners for idea with index iidx
     def process_winners(self, iidx, returns):
         list_of_investors = []
         for sidx, sci in enumerate(self.scientist_list):
             if sci.idea_eff_tp[iidx] != 0:
                 list_of_investors.append(sidx)
-        if config.equal_returns = True:
+        if self.config.equal_returns:  # each scientist receives same number of returns?? CHECK ON THIS!!! --> should be proportional to effort?
             num_investors = len(list_of_investors)
-            scientist_returns = returns / num_investors
-            for invidx in list_of_investors:
-                scientist_id = list_of_investors[invidx]
-                scientist = self.scientist_list[scientist_id]
-                scientist.returns_tp[iidx] += scientist_returns
-                scientist.returns_tot[iidx] += scientist_returns
-                scientist.overall_returns += scientist_returns
+            scientist_returns = returns / num_investors  # FLOAT / int => FLOAT
+            for sci_id in list_of_investors:
+                sci = self.scientist_list[sci_id]
+                sci.returns_tp[iidx] += scientist_returns
+                sci.returns_tot[iidx] += scientist_returns
+                sci.overall_returns += scientist_returns
         else:
-            oldest_scientist_id = list_of_investors[len(list_of_investors) - 1]
-            scientist = self.scientist_list[oldest_scientist_id]
-            scientist.returns_tp[iidx] += returns
-            scientist.returns_tot[iidx] += returns
-            scientist.overall_returns += returns
+            oldest_scientist_id = list_of_investors[0]  # scientist born "earliest" in same tp should come first in list
+            sci = self.scientist_list[oldest_scientist_id]
+            sci.returns_tp[iidx] += returns
+            sci.returns_tot[iidx] += returns
+            sci.overall_returns += returns
