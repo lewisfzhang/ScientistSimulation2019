@@ -39,21 +39,20 @@ class Scientist:
         if self.age < self.model.tp_alive:
             self.avail_effort = self.start_effort  # reset avail_effort each time period
 
-            df = optimize.investing_helper(self)
+            inv_dict = optimize.investing_helper(self)
 
-            self.update_trackers(df)
+            self.update_trackers(inv_dict)
 
     def reset_trackers(self):
         # reset time period trackers to all zeros
         self.idea_eff_tp = [0] * len(self.idea_eff_tp)
         self.ideas_k_paid_tp = [0] * len(self.ideas_k_paid_tp)
 
-    def update_trackers(self, df):
+    def update_trackers(self, inv_dict):
         # loop through all investments made within time period
-        for idx, row in df.iterrows():  # iterates through rows of df
-            idea_index = int(row['idea_idx'])
-            self.idea_eff_tp[idea_index] += row['marg_eff']  # update this period marginal effort per idea
-            self.ideas_k_paid_tp[idea_index] += row['k_paid']  # update which ideas had investment costs paid IN THIS TP
+        for idx, idea_index in enumerate(inv_dict['idea_idx']):
+            self.idea_eff_tp[idea_index] += inv_dict['marg_eff'][idx]  # update this period marginal effort per idea
+            self.ideas_k_paid_tp[idea_index] += inv_dict['k_paid'][idx]  # update which ideas had investment costs paid IN THIS TP
 
         # updates "tot"/across time variables with data from corresponding tp variables
         for idx, val in enumerate(self.idea_eff_tp):

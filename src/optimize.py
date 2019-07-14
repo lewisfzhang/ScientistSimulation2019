@@ -1,13 +1,12 @@
 # optimize.py
 import numpy as np
-import pandas as pd
 import idea
 
 
 def investing_helper(sci):
     # df that keeps track of scientist's transactions within current time period
     # for k_paid: 0 if already paid, # 1 if paid this period
-    df = pd.DataFrame(columns=['idea_idx', 'marg_eff', 'k_paid'])
+    inv_dict = {'idea_idx': [], 'marg_eff': [], 'k_paid': []}
 
     # ARRAY: extra cost for each idea, which is a column in the scientist.perceived_returns df
     k = np.asarray(sci.perceived_rewards['Idea K'])
@@ -43,11 +42,11 @@ def investing_helper(sci):
 
         k_paid_present[idea_idx] = 1  # mark down that the scientist has paid learning cost for this idea
 
-        df = update_df(df, idea_idx, sci)  # record transaction
+        inv_dict = update_df(inv_dict, idea_idx, sci)  # record transaction
 
         sci.avail_effort -= increment
 
-    return df  # returns all transactions scientist has made in this tp
+    return inv_dict  # returns all transactions scientist has made in this tp
 
 
 def smart_returns(sci):
@@ -77,22 +76,22 @@ def list_perception(sci):
 
 
 # adds the current transaction to the list of transactions
-def update_df(df, idea_idx, sci):
+def update_df(inv_dict, idea_idx, sci):
     # checks if idea_idx is already in the df
-    arr = np.where(df['idea_idx'].values == idea_idx)[0]  # [0] because it returns a tuple with array (array[],)
+    arr = np.where(np.asarray(inv_dict['idea_idx']) == idea_idx)[0]  # [0] because it returns a tuple with array (array[],)
 
     if len(arr) == 0:  # if idea_idx is not in df
+        inv_dict['idea_idx'].append(idea_idx)
+        inv_dict['marg_eff'].append(sci.marg_eff[idea_idx])
         # for k_paid, same logic as sci.curr_k calculation
-        row_data = {'idea_idx': idea_idx,
-                    'marg_eff': sci.marg_eff[idea_idx],
-                    # assuming this array hasn't changed since start of tp
-                    # goal is to keep track of which ideas the scientist learned in this period
-                    # (or in other words, the ones they hadn't learned before this time period)
-                    'k_paid': sci.ideas_k_paid_tot[idea_idx] == 0}
-        return df.append(row_data, ignore_index=True)
+        # assuming this array hasn't changed since start of tp
+        # goal is to keep track of which ideas the scientist learned in this period
+        # (or in other words, the ones they hadn't learned before this time period)
+        inv_dict['k_paid'].append(sci.ideas_k_paid_tot[idea_idx] == 0)
+        return inv_dict
     elif len(arr) == 1:  # if idea already exists in df
         # idea_idx and k_paid do not need to be updated since they were already established in initial entry
-        df.at[arr[0], 'marg_eff'] += sci.marg_eff[idea_idx]
-        return df
+        inv_dict['marg_eff'][arr[0]] += sci.marg_eff[idea_idx]  # arr[0] = index of idea_idx in inv_dict
+        return inv_dict
     else:  # there is a problem, shouldn't be more than one element in
         raise Exception("duplicate idx, take a look")
