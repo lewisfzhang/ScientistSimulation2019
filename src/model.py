@@ -1,6 +1,5 @@
 import idea
 import scientist
-import pandas as pd
 import functions as f
 import config as c
 
@@ -29,7 +28,6 @@ class Model:
 
     #  defines the process for one time period within the model
     def step(self):
-        c1 = c.Config()
         self.age_scientists()
         self.birth_new_scientists()
 
@@ -93,17 +91,16 @@ class Model:
                 idea_max = sci_mult_max * i.idea_max
                 idea_k = int(sci.learning_speed * i.idea_k)  # k must be integer!
 
-                # adding to current df
-                new_data = {'Idea Mean': idea_mean,
-                            'Idea SDS': idea_sds,
-                            'Idea Max': idea_max,
-                            'Idea K': idea_k}
-                sci.perceived_rewards = sci.perceived_rewards.append(new_data, ignore_index=True)
+                # adding to current dict
+                sci.perceived_rewards['Idea Mean'].append(idea_mean)
+                sci.perceived_rewards['Idea SDS'].append(idea_sds)
+                sci.perceived_rewards['Idea Max'].append(idea_max)
+                sci.perceived_rewards['Idea K'].append(idea_k)
 
     # updates the lists within each scientist object to reflect the correct number of available ideas
     # ignore static warning, only because we aren't using self keyword
     # keep it in model since it is called by the model step function --> set_perceived_rewards()
-    def append_scientist_lists(self, sci):
+    def append_scientist_lists(self, sci):  # according to %timeit, .append() is actually very fast, no need to worry
         sci.idea_eff_tp.append(0)
         sci.idea_eff_tot.append(0)
         sci.ideas_k_paid_tp.append(0)
@@ -115,7 +112,7 @@ class Model:
     def update_objects(self):
         for idx, i in enumerate(self.idea_list):
             effort_invested_tp = 0
-            k_paid_tp = 0
+            k_paid_tp = 0  # number of scientists who learned the idea in this tp
             for sci in self.scientist_list:
                 effort_invested_tp += sci.idea_eff_tp[idx]
                 k_paid_tp += sci.ideas_k_paid_tp[idx]

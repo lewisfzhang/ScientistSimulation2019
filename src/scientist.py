@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from numpy.random import poisson
 import functions as f
 import optimize
@@ -21,7 +20,7 @@ class Scientist:
 
         self.start_effort = poisson(lam=self.model.start_effort_mean)  # SCALAR: determines starting effort for a scientist in all periods
         self.avail_effort = self.start_effort  # SCALAR: counter that determines how much effort a scientist has left to allocate within TP
-        self.perceived_rewards = pd.DataFrame(columns=['Idea Mean', 'Idea SDS', 'Idea Max', 'Idea K'])  # tracks perceived rewards
+        self.perceived_rewards = {'Idea Mean': [], 'Idea SDS': [], 'Idea Max': [], 'Idea K': []}  # tracks perceived rewards
 
         # data collection: creates lists to track investment within and across time periods
         self.idea_eff_tp = []  # tracks the effort to be invested across different ideas within time period
@@ -54,10 +53,9 @@ class Scientist:
         for idx, row in df.iterrows():  # iterates through rows of df
             idea_index = int(row['idea_idx'])
             self.idea_eff_tp[idea_index] += row['marg_eff']  # update this period marginal effort per idea
-            self.ideas_k_paid_tp[idea_index] += row['k_paid']  # update which ideas had investment costs paid
+            self.ideas_k_paid_tp[idea_index] += row['k_paid']  # update which ideas had investment costs paid IN THIS TP
 
         # updates "tot"/across time variables with data from corresponding tp variables
-        # NOTE BELOW IS WRONG BECAUSE + implements past tp? wait nvm this is right?
         for idx, val in enumerate(self.idea_eff_tp):
             self.idea_eff_tot[idx] += val
         for idx, val in enumerate(self.ideas_k_paid_tp):

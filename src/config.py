@@ -1,9 +1,11 @@
 import numpy as np
-import timeit
+
 
 class Config:
     def __init__(self):
         self.seed = 123
+        self.seed_array = None
+        self.next_seed_idx = None
         self.set_seed()
 
         self.time_periods = 20
@@ -26,8 +28,6 @@ class Config:
         self.equal_returns = True
         self.opt_num = 0
 
-        self.set_time()  # for time keeping purposes
-
     def set_seed(self):
         np.random.seed(self.seed)
         self.seed_array = np.random.randint(100000, 999999, 10000000)  # initialize 10000000 random seeds
@@ -38,17 +38,3 @@ class Config:
         if self.next_seed_idx == len(self.seed_array):
             self.next_seed_idx = 0  # loop back in the seed array
         return self.seed_array[self.next_seed_idx]
-
-    def set_time(self):
-        self.runtime = timeit.default_timer()
-
-    def stop_time(self):
-        stop = timeit.default_timer()
-        print('Elapsed runtime: {} seconds'.format(round(stop - self.runtime, 2)))
-        self.runtime = stop
-
-    def pause_time(self):
-        return
-
-    def resume_time(self):
-        return

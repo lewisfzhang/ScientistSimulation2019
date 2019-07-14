@@ -1,5 +1,6 @@
 import config
 import model
+import functions as f
 
 
 def main():
@@ -7,8 +8,9 @@ def main():
     m = model.Model(c)
     for i in range(c.time_periods):
         print('\nstep', i)
+        t = f.Time('model step')
         m.step()
-        c.stop_time()
+        t.stop_time()
 
 
 if __name__ == '__main__':

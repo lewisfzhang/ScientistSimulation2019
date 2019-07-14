@@ -5,7 +5,6 @@ import idea
 
 
 def investing_helper(sci):
-
     # df that keeps track of scientist's transactions within current time period
     # for k_paid: 0 if already paid, # 1 if paid this period
     df = pd.DataFrame(columns=['idea_idx', 'marg_eff', 'k_paid'])
@@ -18,7 +17,6 @@ def investing_helper(sci):
 
     # keeps on investing while scientist has available effort
     while sci.avail_effort > 0:
-
         # k_paid is 0 if scientist hasn't paid learning cost
         # True = 1, False = 0 --> so if scientist hasn't paid learning cost, curr_k = 1 * k
         curr_k = (k_paid_present == 0) * k
@@ -27,6 +25,12 @@ def investing_helper(sci):
         # to invest research effort after entering learning barrier
         # +1 ensures that each idea a scientist works on will have at least 1 unit of marg effort
         increment = max(curr_k[np.where(curr_k + 1 <= sci.avail_effort)]) + 1
+
+        # given available effort a scientist left, all of them have been learned
+        # --> scientist invest all remaining effort on research given above belief
+        # ASSUMPTION: scientist can only research an idea he can fully invest in
+        if increment == 1:
+            increment = sci.avail_effort
 
         # ARRAY: marg effort for each idea
         sci.marg_eff = increment - curr_k
@@ -75,17 +79,9 @@ def list_perception(sci):
 # adds the current transaction to the list of transactions
 def update_df(df, idea_idx, sci):
     # checks if idea_idx is already in the df
-    if idea_idx in df['idea_idx'].values:
-        row_data = df.loc[df['idea_idx'] == idea_idx]
-        df = df.drop(df.index[df['idea_idx'] == idea_idx][0])
-        # 0 because adding to current row, idea_idx should stay the same
-        add_row = {'idea_idx': 0,
-                   'marg_eff': sci.marg_eff[idea_idx],
-                   'k_paid': 0}
-        row_data += add_row
-        # df = df.append(row_data, ignore_index=True)
-    # if idea_idx is not in df
-    else:
+    arr = np.where(df['idea_idx'].values == idea_idx)[0]  # [0] because it returns a tuple with array (array[],)
+
+    if len(arr) == 0:  # if idea_idx is not in df
         # for k_paid, same logic as sci.curr_k calculation
         row_data = {'idea_idx': idea_idx,
                     'marg_eff': sci.marg_eff[idea_idx],
@@ -93,4 +89,10 @@ def update_df(df, idea_idx, sci):
                     # goal is to keep track of which ideas the scientist learned in this period
                     # (or in other words, the ones they hadn't learned before this time period)
                     'k_paid': sci.ideas_k_paid_tot[idea_idx] == 0}
-    return df.append(row_data, ignore_index=True)
+        return df.append(row_data, ignore_index=True)
+    elif len(arr) == 1:  # if idea already exists in df
+        # idea_idx and k_paid do not need to be updated since they were already established in initial entry
+        df.at[arr[0], 'marg_eff'] += sci.marg_eff[idea_idx]
+        return df
+    else:  # there is a problem, shouldn't be more than one element in
+        raise Exception("duplicate idx, take a look")
