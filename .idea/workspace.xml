@@ -4,9 +4,7 @@
     <list default="true" id="c3034b74-de77-4974-821f-a4161ee58a3d" name="Default Changelist" comment="fast &quot;hopefully&quot; working version2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/idea.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/idea.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scientist.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scientist.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
@@ -25,8 +23,8 @@
             <file leaf-file-name="scientist.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/scientist.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="668">
-                    <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+                  <state relative-caret-position="353">
+                    <caret line="35" column="24" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="24" />
                     <folding>
                       <element signature="e#0#19#0" expanded="true" />
                       <element signature="e#302#394#0" expanded="true" />
@@ -38,8 +36,8 @@
             <file leaf-file-name="idea.py" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/idea.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="225">
-                    <caret line="15" selection-start-line="15" selection-end-line="15" />
+                  <state relative-caret-position="240">
+                    <caret line="16" selection-start-line="16" selection-end-line="16" />
                     <folding>
                       <element signature="e#0#32#0" expanded="true" />
                     </folding>
@@ -80,7 +78,7 @@
             <entry file="file://$PROJECT_DIR$/src/config.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="525">
-                  <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+                  <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -88,11 +86,15 @@
           <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/model.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+                <state relative-caret-position="643">
+                  <caret line="164" column="51" selection-start-line="164" selection-start-column="51" selection-end-line="164" selection-end-column="51" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                     <element signature="e#82#147#0" expanded="true" />
+                    <element signature="e#1841#1931#0" expanded="true" />
+                    <element signature="e#2381#2471#0" expanded="true" />
+                    <element signature="e#3271#3351#0" expanded="true" />
+                    <element signature="e#4282#4379#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -102,7 +104,7 @@
             <entry file="file://$PROJECT_DIR$/src/optimize.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="105">
-                  <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="30" />
+                  <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="30" />
                   <folding>
                     <element signature="e#14#32#0" expanded="true" />
                   </folding>
@@ -127,11 +129,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/model.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="473">
-                  <caret line="161" column="40" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="40" />
+                <state relative-caret-position="618">
+                  <caret line="182" column="105" selection-start-line="182" selection-start-column="105" selection-end-line="182" selection-end-column="105" />
                   <folding>
                     <element signature="e#0#11#0" expanded="true" />
                     <element signature="e#1915#2005#0" expanded="true" />
@@ -143,11 +145,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="functions.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="functions.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+                <state relative-caret-position="345">
+                  <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
                   <folding>
                     <element signature="e#15#33#0" expanded="true" />
                   </folding>
@@ -184,6 +186,10 @@
       <find>effort_by_tp</find>
       <find>count</find>
       <find>num_k</find>
+      <find>returns_tp</find>
+      <find>overall_returns_tp</find>
+      <find>overall_returns</find>
+      <find>returns_tot</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,8 +204,8 @@
         <option value="$PROJECT_DIR$/src/idea.py" />
         <option value="$PROJECT_DIR$/src/run.py" />
         <option value="$PROJECT_DIR$/src/scientist.py" />
-        <option value="$PROJECT_DIR$/src/functions.py" />
         <option value="$PROJECT_DIR$/src/model.py" />
+        <option value="$PROJECT_DIR$/src/functions.py" />
       </list>
     </option>
   </component>
@@ -249,6 +255,7 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/model.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/scientist.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -476,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563128078008</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fast &quot;hopefully&quot; working version2">
+      <created>1563214598885</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1563214598885</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -496,9 +510,9 @@
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32916668" />
       <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.5002633" side_tool="true" weight="0.37083334" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32916668" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.29259259" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.29259259" />
       <window_info anchor="bottom" id="Version Control" order="1" sideWeight="0.4997367" weight="0.32962963" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="2" sideWeight="0.4997367" visible="true" weight="0.37037036" />
+      <window_info anchor="bottom" id="Python Console" order="2" sideWeight="0.4997367" weight="0.37037036" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.49921012" weight="0.3287037" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
@@ -565,19 +579,41 @@
     <entry file="file://$PROJECT_DIR$/src/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
-          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_model.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/optimize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="62" column="11" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="11" />
+          <folding>
+            <element signature="e#14#32#0" expanded="true" />
+            <element signature="e#3485#3535#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/idea.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scientist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#302#394#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -592,48 +628,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#15#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/optimize.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="62" column="11" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="11" />
-          <folding>
-            <element signature="e#14#32#0" expanded="true" />
-            <element signature="e#3485#3535#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scientist.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
-          <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#302#394#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="161" column="40" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="40" />
+        <state relative-caret-position="618">
+          <caret line="182" column="105" selection-start-line="182" selection-start-column="105" selection-end-line="182" selection-end-column="105" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1915#2005#0" expanded="true" />
             <element signature="e#2455#2545#0" expanded="true" />
             <element signature="e#3345#3425#0" expanded="true" />
             <element signature="e#4356#4453#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#15#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

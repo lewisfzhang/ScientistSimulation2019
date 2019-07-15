@@ -1,7 +1,6 @@
 import idea
 import scientist
 import functions as f
-import config as c
 
 
 class Model:
@@ -118,7 +117,6 @@ class Model:
                 k_paid_tp += sci.ideas_k_paid_tp[idx]
             i.total_effort += effort_invested_tp
             i.effort_by_tp.append(effort_invested_tp)
-            i.num_k += k_paid_tp
             i.num_k_by_tp.append(k_paid_tp)
 
     # determine who gets paid out based on the amount of effort input
@@ -129,11 +127,9 @@ class Model:
                 start_effort = i.total_effort - sum(i.effort_by_tp[0:last_index])  # sum all effort before this tp
                 idea_return = idea.get_returns(i.idea_mean, i.idea_sds, i.idea_max, start_effort, start_effort+i.total_effort)
                 self.process_winners(idx, idea_return)  # process the winner for each idea, one per loop
-        for sci_id in enumerate(self.scientist_list):
-            sci = self.scientist_list[sci_id]
-            tp_returns = 0
-            for idx in sci.returns_tp:
-                tp_returns += sci.returns_tp[idx]
+
+        for sci in self.scientist_list:
+            tp_returns = sum(sci.returns_tp)
             sci.overall_returns_tp.append(tp_returns)
 
     # processes winners for idea with index iidx
@@ -154,24 +150,34 @@ class Model:
                 individual_returns = round(individual_proportion * total_effort_invested)
                 sci.returns_tp[iidx] += individual_returns
                 sci.returns_tot[iidx] += individual_returns
-                sci.overall_returns += individual_returns
 
         else:
             oldest_scientist_id = list_of_investors[0]  # scientist born "earliest" in same tp should come first in list
             sci = self.scientist_list[oldest_scientist_id]
             sci.returns_tp[iidx] += returns
             sci.returns_tot[iidx] += returns
-            sci.overall_returns += returns
 
     def collect_data(self):
         # for scientists
-        sci_var_list = ['returns_tot',  # Total returns by idea, DataFrame
-                        'overall_returns_tp',
-                        ]
-        sci_returns_tot = [sci.returns_tot for sci in self.scientist_list]
-        sci_idea_eff_tp_df = f.array2d_to_df(sci_returns_tot, row_name='sci', col_name='idea_idx', file_name='sci_returns_tot')
+        sci_returns_tot = [sci.returns_tot for sci in self.scientist_list]  # Total returns by idea, DataFrame
+        sci_overall_returns_tp = [sci.overall_returns_tp for sci in self.scientist_list]  # Overall returns by time period, DataFrame
+        sci_ideas_k_paid_tot = [sci.ideas_k_paid_tot for sci in self.scientist_list]  # Ideas invested in, DataFrame
+        sci_returns_tot_cum = [sum(sci.returns_tot) for sci in self.scientist_list]  # Overall returns, Array
 
-        sci_overall_returns = [sci.overall_returns for sci in self.scientist_list]
+        sci_returns_tot_df = f.array2d_to_df(sci_returns_tot, row_name='sci', col_name='idea', file_name='sci_returns_tot')
+        sci_overall_returns_tp_df = f.array2d_to_df(sci_overall_returns_tp, row_name='sci', col_name='tp', file_name='sci_ideas_k_paid_tot')
+        sci_ideas_k_paid_tot_df = f.array2d_to_df(sci_ideas_k_paid_tot, row_name='sci', col_name='idea', file_name='sci_ideas_k_paid_tot')
+        f.arrays_to_html([sci_returns_tot_cum], ['sci_returns_tot_cum'], 'scientist')  # if more than one element, create a list of variables
 
         # for ideas
-        idea_total_effort = [i.total_effort for i in self.idea_list]
+        idea_effort_by_tp = [i.effort_by_tp for i in self.idea_list]  # Effort by time period, DataFrame
+        idea_num_k_by_tp = [i.num_k_by_tp for i in self.idea_list]  # Number of researchers by time period, DataFrame
+        idea_total_effort = [i.total_effort for i in self.idea_list]  # Total effort, Array
+        idea_num_k = [sum(i.num_k_by_tp) for i in self.idea_list]  # Number of researchers, Array
+        idea_sci_impact = [idea.get_returns(i.idea_mean, i.idea_sds, i.idea_max, 0, i.total_effort) for i in self.idea_list]  # Total scientific impact, based on point on the idea curve, Array
+        idea_inflect_tp = [f.sum_point_array(i.effort_by_tp, i.idea_mean) for i in self.idea_list]  # Time period where lambda was reached, Array --> at mean?
+
+        idea_effort_by_tp_df = f.array2d_to_df(idea_effort_by_tp, row_name='idea', col_name='tp', file_name='idea_effort_by_tp')
+        idea_num_k_by_tp_df = f.array2d_to_df(idea_num_k_by_tp, row_name='idea', col_name='tp', file_name='idea_num_k_by_tp')
+        f.arrays_to_html([idea_total_effort, idea_num_k, idea_sci_impact, idea_inflect_tp],
+                         ['idea_total_effort', 'idea_num_k', 'idea_sci_impact', 'idea_inflect_tp'], 'idea')

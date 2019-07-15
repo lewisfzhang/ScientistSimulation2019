@@ -19,17 +19,29 @@ def get_normal_number(mean, sds, configg):  # configg is the config object, used
     return x
 
 
-def arrays_to_html(*arr):
-    for i in arr:
-        return
+def arrays_to_html(arr, row_names, file_name):  # takes list of arrays
+    df = pd.DataFrame(data=arr, index=row_names, columns=pd.Index(np.arange(len(arr[0])), name=file_name))
+    df = df.round(2)
+    df = df.transpose()
+    df.to_html('../out/{}_arrays_df.html'.format(file_name))
 
 
 def array2d_to_df(arr, row_name='row', col_name='col', file_name='unnamed_df'):
     i = pd.Index(np.arange(len(arr)), name=row_name)
     c = pd.Index(np.arange(len(arr[0])), name=col_name)
     df = pd.DataFrame(data=arr, index=i, columns=c)
-    df.to_html('../out/{}.html'.format(file_name))
+    df.to_html('../out/{}_df.html'.format(file_name))
     return df
+
+
+# returns index where cumulative sum starting from index 0 is greater or equal to "target" sum
+def sum_point_array(arr, target):
+    curr_sum = 0
+    for idx, val in enumerate(arr):
+        curr_sum += val
+        if curr_sum >= target:
+            return idx
+    return -1  # not found
 
 
 class Time:
