@@ -129,6 +129,10 @@ class Model:
                 start_effort = i.total_effort - sum(i.effort_by_tp[0:last_index])  # sum all effort before this tp
                 idea_return = idea.get_returns(i.idea_mean, i.idea_sds, i.idea_max, start_effort, start_effort+i.total_effort)
                 self.process_winners(idx, idea_return)  # process the winner for each idea, one per loop
+        for sci_id in enumerate(self.scientist_list):
+            sci = self.scientist_list[sci_id]
+            for idx in sci.returns_tp:
+                sci.overall_returns_tp += sci.returns_tp[idx]
 
     # processes winners for idea with index iidx
     def process_winners(self, iidx, returns):
