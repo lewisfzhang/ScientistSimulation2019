@@ -19,9 +19,6 @@ def get_normal_number(mean, sds, configg):  # configg is the config object, used
     return x
 
 
-
-
-
 class Time:
     def __init__(self, name):
         self.runtime = timeit.default_timer()  # keeps track of the starting time
