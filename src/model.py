@@ -140,14 +140,19 @@ class Model:
             if sci.idea_eff_tp[iidx] != 0:
                 list_of_investors.append(sidx)
 
-        if self.config.equal_returns:  # each scientist receives same number of returns?? CHECK ON THIS!!! --> should be proportional to effort?
-            num_investors = len(list_of_investors)
-            scientist_returns = returns / num_investors  # FLOAT / int => FLOAT
+        if self.config.equal_returns:  # each scientist receives returns proportional to effort
+            total_effort_invested = 0
             for sci_id in list_of_investors:
                 sci = self.scientist_list[sci_id]
-                sci.returns_tp[iidx] += scientist_returns
-                sci.returns_tot[iidx] += scientist_returns
-                sci.overall_returns += scientist_returns
+                total_effort_invested += sci.idea_eff_tp[iidx]
+            for sci_id in list_of_investors:
+                sci = self.scientist_list[sci_id]
+                individual_proportion = float(sci.idea_eff_tp[iidx] / total_effort_invested)
+                individual_returns = round(individual_proportion * total_effort_invested)
+                sci.returns_tp[iidx] += individual_returns
+                sci.returns_tot[iidx] += individual_returns
+                sci.overall_returns += individual_returns
+
         else:
             oldest_scientist_id = list_of_investors[0]  # scientist born "earliest" in same tp should come first in list
             sci = self.scientist_list[oldest_scientist_id]
@@ -156,4 +161,3 @@ class Model:
             sci.overall_returns += returns
 
     def collect_data(self):
-        
