@@ -12,6 +12,10 @@ def main():
         m.step()
         t.stop_time()
 
+    t = f.Time('\ncollecting')
+    m.collect_data()
+    t.stop_time()
+
 
 if __name__ == '__main__':
     main()

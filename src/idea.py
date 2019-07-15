@@ -13,7 +13,6 @@ class Idea:
     def create_idea_collectors(self, tp):
         self.total_effort = 0  # total effort invested in idea to date, also accessed by optimization algorithms
         self.effort_by_tp = [0] * tp  # total effort invested in idea by period
-        self.num_k = 0  # number of researchers who have invested learning cost in idea
         self.num_k_by_tp = [0] * tp  # number people who paid investment cost by period
 
 
@@ -32,3 +31,7 @@ def old_logistic_cdf(x, loc, scale):
 def logistic_cdf(x, loc, scale):
     return (old_logistic_cdf(x, loc, scale) - old_logistic_cdf(0, loc, scale)) / (
                 1 - old_logistic_cdf(0, loc, scale))
+
+
+def total_scientific_impact():
+    return

@@ -42,9 +42,6 @@ class Model:
 
         self.tp += 1
 
-        if self.tp is self.time_periods:
-            self.collect_data()
-
     # adds one year to the age of every scientist that already exists within the model
     def age_scientists(self):
         for sci in self.scientist_list:
@@ -161,3 +158,14 @@ class Model:
             sci.overall_returns += returns
 
     def collect_data(self):
+        # for scientists
+        sci_var_list = ['returns_tot',  # Total returns by idea, DataFrame
+                        'overall_returns_tp',
+                        ]
+        sci_returns_tot = [sci.returns_tot for sci in self.scientist_list]
+        sci_idea_eff_tp_df = f.array2d_to_df(sci_returns_tot, row_name='sci', col_name='idea_idx', file_name='sci_returns_tot')
+
+        sci_overall_returns = [sci.overall_returns for sci in self.scientist_list]
+
+        # for ideas
+        idea_total_effort = [i.total_effort for i in self.idea_list]

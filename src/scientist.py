@@ -22,6 +22,9 @@ class Scientist:
         self.avail_effort = self.start_effort  # SCALAR: counter that determines how much effort a scientist has left to allocate within TP
         self.perceived_rewards = {'Idea Mean': [], 'Idea SDS': [], 'Idea Max': [], 'Idea K': []}  # tracks perceived rewards
 
+        self.create_scientist_collectors()
+
+    def create_scientist_collectors(self):
         # data collection: creates lists to track investment within and across time periods
         self.idea_eff_tp = []  # tracks the effort to be invested across different ideas within time period
         self.idea_eff_tot = []  # tracks the total effort invested in each idea by the scientist
@@ -47,6 +50,7 @@ class Scientist:
         # reset time period trackers to all zeros
         self.idea_eff_tp = [0] * len(self.idea_eff_tp)
         self.ideas_k_paid_tp = [0] * len(self.ideas_k_paid_tp)
+        self.returns_tp = [0] * len(self.returns_tp)
 
     def update_trackers(self, inv_dict):
         # loop through all investments made within time period

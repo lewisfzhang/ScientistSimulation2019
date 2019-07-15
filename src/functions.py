@@ -2,6 +2,7 @@
 import numpy as np
 import random
 import timeit
+import pandas as pd
 
 
 def get_random_float(minn, maxx, configg):  # configg is the config object, used to get random seed value
@@ -16,6 +17,19 @@ def get_normal_number(mean, sds, configg):  # configg is the config object, used
         np.random.seed(configg.get_next_seed())
         x = np.random.normal(mean, sds)
     return x
+
+
+def arrays_to_html(*arr):
+    for i in arr:
+        return
+
+
+def array2d_to_df(arr, row_name='row', col_name='col', file_name='unnamed_df'):
+    i = pd.Index(np.arange(len(arr)), name=row_name)
+    c = pd.Index(np.arange(len(arr[0])), name=col_name)
+    df = pd.DataFrame(data=arr, index=i, columns=c)
+    df.to_html('../out/{}.html'.format(file_name))
+    return df
 
 
 class Time:
