@@ -42,6 +42,9 @@ class Model:
 
         self.tp += 1
 
+        if self.tp is self.time_periods:
+            self.collect_data()
+
     # adds one year to the age of every scientist that already exists within the model
     def age_scientists(self):
         for sci in self.scientist_list:
@@ -151,3 +154,6 @@ class Model:
             sci.returns_tp[iidx] += returns
             sci.returns_tot[iidx] += returns
             sci.overall_returns += returns
+
+    def collect_data(self):
+        
