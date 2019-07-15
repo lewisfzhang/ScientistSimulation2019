@@ -131,8 +131,10 @@ class Model:
                 self.process_winners(idx, idea_return)  # process the winner for each idea, one per loop
         for sci_id in enumerate(self.scientist_list):
             sci = self.scientist_list[sci_id]
+            tp_returns = 0
             for idx in sci.returns_tp:
-                sci.overall_returns_tp += sci.returns_tp[idx]
+                tp_returns += sci.returns_tp[idx]
+            sci.overall_returns_tp.append(tp_returns)
 
     # processes winners for idea with index iidx
     def process_winners(self, iidx, returns):
