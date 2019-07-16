@@ -27,19 +27,19 @@ class Model:
 
     #  defines the process for one time period within the model
     def step(self):
-        self.age_scientists()
-        self.birth_new_scientists()
+        self.age_scientists()  # adds to the age of every existing scientist
+        self.birth_new_scientists()  # creates a new cohort of scientists of age 0
 
         ideas_last_tp = self.birth_new_ideas()  # keep track of how many old ideas so we only have to update new ideas
-        self.set_perceived_rewards(ideas_last_tp)
+        self.set_perceived_rewards(ideas_last_tp)  # update each scientist's perceived rewards to reflect new ideas
 
         for s in self.scientist_list:
-            s.step()
+            s.step()  # iterate through scientist step for every scientist, returning their investments
 
-        self.update_objects()
-        self.pay_out_returns()
+        self.update_objects()  # update the data collectors within the scientist and idea objects
+        self.pay_out_returns()  # pay out the actual returns to scientists who invested in ideas
 
-        self.tp += 1
+        self.tp += 1  # progress to the next time period
 
     # adds one year to the age of every scientist that already exists within the model
     def age_scientists(self):
